@@ -1,0 +1,17 @@
+use strict;
+use warnings;
+use utf8;
+use lib 'lib';
+use Plack::Builder;
+use Path::Class qw(file);
+
+my $app = sub { [ 302, [ "Location" => "/index.html" ], [] ] };
+
+builder {
+    enable 'ReplaceToUnko', unko_image_url => "/unko.png";
+    enable 'Static',
+      path     => qr{^/.},
+      root     => file(__FILE__)->absolute->dir,
+      encoding => 'utf-8';
+    $app;
+};
