@@ -1,12 +1,13 @@
 <script>
 function go(el) {
   var url = el.href;
-  var w.open();
-  w.document.write('<meta http-equiv="refresh" content="0;url='+el.href+'"/>');
+  var w = window.open();
+  w.document.write('<meta http-equiv="refresh" content="2;url='+url+'"/>');
+  w.document.write('moving to ' + url);
   w.document.close();
   return false;
 }
 </script>
 Hi, I'm mattn<br />
 <img src="mattn.png" /><br />
-<a href="/mattn.png" onclick="javascript:go(this);">refer directly</a>
+<a href="/mattn.png" onclick="return go(this);">refer directly</a>
